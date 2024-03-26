@@ -1,0 +1,37 @@
+We concentrate our efforts on stochastic non-stationary assets (unit root case), therefore we pre-selected two futures contracts that possibly will present a cointegrating nature. In the case of Engle-Granger procedure, our selection is based on global events that could open the window to arbitrage trading. 
+  It is worth noting that the Engle-Granger procedure works best to estimate a cointegrating relationship and error correction between a pair of time series. Working with n > 2 variables is out of the scope of this strategy, although further adaptions can be done using the Johansen MLE procedure in a multivariate setting.
+
+We make use of Yahoo Finance as data source, as it provides historical data for continuous futures contracts, including their Opening, Closing, Highest and Lowest price of a given period. Nevertheless, we've attached the historical data as csv files to this repository. 
+
+Confirming the integrated process with Dickey-Fuller Test for unit root.
+In this section we describe the process of confirming the integrated process, also known as unit root. We use the term “confirming” because the assumption is that the time series of the assets that we analyze in this report are known to have an integrated process of order one Y_t~I(1) and therefore they are non-stationary. However, it will be helpful to define the numerical workings of this process for further investigation when confirming the stationarity of time series.  
+
+Therefore, we start with the following time series equation:
+
+█(y_t= ϵ_t+ βy_(t-1)  #(1) )
+
+Decomposing the above equation renders:
+
+y_t= ϵ_t+ β(ϵ_(t-1)+ βy_(t-2))
+
+y_t= ϵ_t+βϵ_(t-1)+ β^2 (ϵ_(t-2)+ βy_(t-3))
+
+█(y_t= ϵ_t+βϵ_(t-1)+ β^2 ϵ_(t-2)+⋯#(1.1) )
+
+
+By following the decomposition method, we are left with just the residuals as shown in (1.1). Furthermore, we can note that the impact of past residuals fades as i ~ ∞:
+
+█(y_t= ∑_(i=0)^p▒β^i  ϵ_(t-j)  #(1.1.1) )
+The null hypothesis is that time series has a unit root. Therefore:
+
+H_0: Y_t= Y_(t-1)+ ϵ_t     implies   β=1,∆Y_t= ϵ_t
+
+H_1: Y_t= βY_(t-1)+ ϵ_t     substract   Y_(t-1)
+
+We test for significance of ø= β-1 by comparing the t-statistic to a critical value taken from the Dickey-Fuller distribution. Hence: 
+
+∆Y_t= øY_(t-1)+ ϵ_t   
+
+Failing to reject the Null Hypothesis (H0) confirms that the time series has a unit root given:
+
+ø=1-β=0  →   β=1  ∴  ∆Y_t= ϵ_t
