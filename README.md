@@ -8,7 +8,7 @@ This repository contains code that may serve as a reference or example for compl
 
 - No Guarantee: While efforts have been made to ensure the accuracy and reliability of the code provided, there is no guarantee that it will be error-free or suitable for your specific requirements. You are encouraged to test and validate any code before using it in a production environment or for critical tasks.
 
-# The Strategy.
+# Contents.
 
 We make use of an already-made code exposed in Halls-Moore (2015) for data handling and portfolio tracking, although some changes were made to adapt the trading rules to our strategy. 
 
@@ -26,3 +26,38 @@ Science Research Network, 27. doi:https://dx.doi.org/10.2139/ssrn.2220092
 
 Halls-Moore , M. L. (2015). Successful Algorithmic Trading. Retrieved 07 2023, from 
 https://www.quantstart.com/successful-algorithmic-trading-ebook/
+
+# Logic behind the strategy. 
+
+
+Therefore, we start with the following time series equation:
+
+█(y_t= ϵ_t+ βy_(t-1)  #(1) )
+
+Decomposing the above equation renders:
+
+y_t= ϵ_t+ β(ϵ_(t-1)+ βy_(t-2))
+
+y_t= ϵ_t+βϵ_(t-1)+ β^2 (ϵ_(t-2)+ βy_(t-3))
+
+█(y_t= ϵ_t+βϵ_(t-1)+ β^2 ϵ_(t-2)+⋯#(1.1) )
+
+
+By following the decomposition method, we are left with just the residuals as shown in (1.1). Furthermore, we can note that the impact of past residuals fades as i ~ ∞:
+
+█(y_t= ∑_(i=0)^p▒β^i  ϵ_(t-j)  #(1.1.1) )
+The null hypothesis is that time series has a unit root. Therefore:
+
+H_0: Y_t= Y_(t-1)+ ϵ_t     implies   β=1,∆Y_t= ϵ_t
+
+H_1: Y_t= βY_(t-1)+ ϵ_t     substract   Y_(t-1)
+
+We test for significance of ø= β-1 by comparing the t-statistic to a critical value taken from the Dickey-Fuller distribution. Hence: 
+
+∆Y_t= øY_(t-1)+ ϵ_t   
+
+Failing to reject the Null Hypothesis (H0) confirms that the time series has a unit root given:
+
+ø=1-β=0  →   β=1  ∴  ∆Y_t= ϵ_t
+
+
