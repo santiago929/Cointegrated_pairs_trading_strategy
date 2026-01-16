@@ -4,10 +4,6 @@ Created on Sat Jul  8 16:14:45 2023
 
 @author: Santiago
 """
-
-"""
-                       RUN THE CODE FROM HERE TO THE BOTTOM 
-"""
 import pandas as pd
 import yfinance as yf
 import numpy as np
@@ -22,7 +18,6 @@ import statsmodels.tsa.stattools as ts
 
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
-
 
 symbol_list = ['PL=F','HG=F']
 
@@ -140,6 +135,7 @@ if __name__ == "__main__":
     print(pd.DataFrame({'mu_eq': OUtput[0], 'sigma_eq': OUtput[1],
                                  'beta_hr': engle_gragner(scaled_df, symbol_list[0], 
                                                           symbol_list[1])}))
+
 
 
 
