@@ -16,7 +16,7 @@ We make use of an already-made code exposed in Halls-Moore (2015) for data handl
 - Code TWO is where we take the results from code ONE and adapt them into the strategy.
   
   - Note that the parameters 𝛽′𝐶𝑜𝑖𝑛𝑡, 𝜇_𝑒 𝑎𝑛𝑑 𝜎_𝑒𝑞 will remain fixed as the optimization process is just made for Z. 
-  - Code file TWO is amended to handle position sizing according to the Engle-Granger process, whilst maintaining the author’s proposed trading orders irrespective of cash held, contract and tick size (most common for futures trading) and margin requirements;
+  - Code file TWO is amended to handle position sizing according to the Engle-Granger process, whilst maintaining the author’s proposed trading orders irrespective of cash held, contract and tick size and margin requirements;
     as well, we do not consider any commissions charged by the broker, the depth of the order book nor the bid/ask spreads as the liquidity of some commodities futures like Copper and Platinum contracts is rather low. Therefore, the fill cost is set to the current market      price which is the closing price of the day before, and the number of contracts (set to 100 as default).
 
 # References.
